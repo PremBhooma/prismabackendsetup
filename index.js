@@ -1,9 +1,16 @@
 const express = require("express");
 require("dotenv").config();
+const cors = require("cors");
 const path = require("path");
 
 const app = express();
 app.use(express.json());
+app.use(
+  cors({
+    origin: "*",
+  })
+);
+
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 const authRouter = require("./routes/authRoute.js");
